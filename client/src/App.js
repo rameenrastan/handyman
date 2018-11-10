@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 import Users from './Users';
+import JobPostings from './JobPostings';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Route exact path="/" component={ Home }/>
         <Route exact path="/profile" component={ Profile }/>
         <Route exact path="/users" component={ Users }/>
+        <Route exact path="/postings" component={ JobPostings }/>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -22,6 +24,9 @@ class App extends Component {
             </li>
             <li>
               <Link to="/users">Users</Link>
+            </li>
+            <li>
+              <Link to="/postings">Job Postings</Link>
             </li>
           </ul>
         </div>
