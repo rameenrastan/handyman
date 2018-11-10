@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import Home from './Home';
+import Profile from './Profile';
+import Users from './Users';
 
 class App extends Component {
-  state = {users: []}
-
-  // componentDidMount() {
-  //   fetch('/users')
-  //     .then(res => res.json())
-  //     .then(users => this.setState({ users }));
-  // }
-
   render() {
     return (
       <Router>
         <div>
+        <Route exact path="/" component={ Home }/>
+        <Route exact path="/profile" component={ Profile }/>
+        <Route exact path="/users" component={ Users }/>
           <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
           </ul>
-          <Route exact path="/" component={ Home }/>
         </div>
       </Router>
     );
