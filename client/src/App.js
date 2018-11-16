@@ -17,7 +17,7 @@ class App extends Component {
         <Route exact path="/postings" component={ JobPostings }/>
           <ul>
             <li>
-              <Link to="/">Jared Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>
