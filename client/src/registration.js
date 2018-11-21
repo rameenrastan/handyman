@@ -36,7 +36,14 @@ class Registration extends Component{
             password: "",
             confirmPassword: "",
         } 
-        this.handleChange = this.handleChange.bind(this)
+        this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+        this.handleLastNameChange = this.handleLastNameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
+        this.handleCityChange = this.handleCityChange.bind(this);
+        this.handlePostalCodeChange = this.handlePostalCodeChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
     }
 
 
@@ -93,7 +100,23 @@ class Registration extends Component{
         
     }
 
+    canBeSubmitted(){
+        const {firstName, lastName, email, address, city, postalCode, password, confirmPassword} = this.state;
+        return (
+            firstName.length > 0 &&
+            lastName.length > 0 &&
+            email.length > 0 &&
+            address.length > 0 &&
+            city.length > 0 &&
+            postalCode.length > 0 &&
+            password.length > 0 &&
+            confirmPassword.length > 0
+        );
+    }
+
     render(){
+        const isEnabled = this.canBeSubmitted();
+
         return(
             <Card
             className={this.card}
@@ -172,9 +195,10 @@ class Registration extends Component{
                     />
                     <br />
                     <br />
-                    <Button variant="contained" color="primary"> 
-                        Primary
+                    <Button variant="contained" color="primary" disabled={!isEnabled}> 
+                        Register
                     </Button>
+                    {console.log(!isEnabled)}
                 </CardContent>
             </Card>
         );
