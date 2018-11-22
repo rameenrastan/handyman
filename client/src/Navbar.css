@@ -1,0 +1,50 @@
+.NavigationHead {
+    position: fixed;
+    width: 100%;
+    background: slategray;
+    height: 60px;
+    top: 0;
+    left: 0;
+}
+
+.Navigationbar {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.NavigationMainMenu {
+    color: white;
+    font-size: 25px;
+}
+
+.NavigationItems ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.NavigationItems li {
+    padding: 0 0.5rem;
+}
+
+.spacer {
+    flex: 1;
+}
+.NavigationMainMenu a{
+    text-decoration: none;
+    color: white;
+}
+.NavigationItems a:link,
+.NavigationItems a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.NavigationItems a:hover,
+.NavigationItems a:active{
+    color: rgb(152, 152, 172);
+    text-decoration: none;
+}
