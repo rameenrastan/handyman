@@ -1,4 +1,14 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+// DB config
+const db = require('./config/keys').mongoURI;
+
+// Connect to MongoDB
+mongoose.connect(db, { useNewUrlParser: true })
+  .then(() => console.log('MongoDB connected.'))
+  .catch(error => console.log(error));
+
 const app = express();
 
 app.get('/', (req, res) => {
