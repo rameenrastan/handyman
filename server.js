@@ -23,8 +23,8 @@ mongoose.connect(db, { useNewUrlParser: true })
 
 // Use Routes
 app.use('/api/users', users);
-app.use('/api/profiles', profiles);
-app.use('/api/services', services);
+// app.use('/api/profiles', profiles);
+// app.use('/api/services', services);
 
 const port = process.env.PORT || 5000;
 
