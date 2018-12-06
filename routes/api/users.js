@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-// Load User Model
 const User = require('../../models/User');
-
-// Load Secret key
+const passport = require('passport');
 const key = require('../../config/keys').secretOrKey;
+
+// Load validations
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // This is just a test route...
 router.get('/test', (req,res) => {
@@ -18,6 +19,14 @@ router.get('/test', (req,res) => {
 //@desc Register user
 //@access PUBLIC
 router.post('/register', (req,res) => {
+
+  // Form validation
+  const {errors, isValid } = validateRegisterInput(req.body);
+  // Check validation
+  if(!isValid) {
+    res.status(400).json(errors);
+  }
+  // logic for register
   User.findOne({ email: req.body.email })
     .then(foundUser => {
       if(foundUser) {
@@ -41,6 +50,13 @@ router.post('/register', (req,res) => {
 //@desc Login user
 //@access Public
 router.post('/login', (req, res) => {
+  // Validation
+  const { errors, isValid } = validateLoginInput(req.body);
+  // Check validation 
+  if(!isValid) {
+    res.status(400).json(errors);
+  }
+  // Login logic
   const { email, password } = req.body;
   User.findOne({ email })
     .then(user => {
@@ -58,11 +74,19 @@ router.post('/login', (req, res) => {
             jwt.sign(payload, key, { expiresIn: 3600 }, (error, token) => { res.json({ success: true, token: 'Bearer ' + token}); 
             });
           } else {
-            res.status(400).json({ error: 'Email or password is incorrect. Please try logging in again.'})
+            res.status(400).json({ error: 'Email or password is incorrect. Please try logging in again.'});
           }
         });
     })
     .catch(err => res.status(400).json({ error: err }));
 });
 
+// @route GET api/users/current
+// @desc Return current user
+// @access Private
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.user);
+  const { _id, name, email } = req.user;
+  res.json({ _id, name, email});
+})
 module.exports = router;
