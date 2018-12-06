@@ -6,15 +6,13 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Build</b> a login/auth app with the{" "}
-              <span style={{ fontFamily: "monospace" }}>HandyMan</span>
+              <b>HandyMan</b> at your service.
             </h4>
             <p className="flow-text grey-text text-darken-1">
-              Create a (minimal) full-stack app with user authentication via
-              passport and JWTs
+              Let's get started.
             </p>
             <br />
-            <a
+            <a href="/register"
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -24,7 +22,7 @@ class Landing extends Component {
             >
               Register
             </a>
-            <a
+            <a href="login"
               style={{
                 marginLeft: "2rem",
                 width: "150px",
