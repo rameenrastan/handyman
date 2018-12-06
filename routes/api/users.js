@@ -88,5 +88,6 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   console.log(req.user);
   const { _id, name, email } = req.user;
   res.json({ _id, name, email});
-})
+});
+
 module.exports = router;
